@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haoua Ben Ali Abbo — Data Analyst & Development Economist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand: #F5F0E8;
+    --ink: #1A1814;
+    --rust: #B85C38;
+    --muted: #8A8278;
+    --border: #DDD8CF;
+    --white: #FDFCF9;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--sand);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 1.4rem;
+    background: rgba(245, 240, 232, 0.93);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 1.4rem; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s;
+    padding-bottom: 2px;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--rust);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+
+  .nav-cv {
+    display: inline-flex !important;
+    align-items: center;
+    padding: 0.3rem 0.75rem !important;
+    border: 1px solid var(--ink) !important;
+    color: var(--ink) !important;
+    letter-spacing: 0.14em;
+    transition: background 0.2s, color 0.2s !important;
+  }
+  .nav-cv::after { display: none !important; }
+  .nav-cv:hover { background: var(--ink); color: var(--sand) !important; }
+  .nav-cv:hover svg path { stroke: var(--sand); }
+
+.nav-links a:hover::after { width: 100%; }
+
+  /* ── HERO ── */
+  #hero {
+    padding: 5.5rem 1.4rem 2.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-photo-wrap {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-bottom: 1.8rem;
+    position: relative;
+  }
+  .hero-photo-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+  /* placeholder quand pas de photo */
+  .hero-photo-placeholder {
+    width: 100%; height: 100%;
+    background: var(--white);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.6rem;
+    color: var(--muted);
+  }
+  .hero-photo-placeholder svg { opacity: 0.3; }
+  .hero-photo-placeholder span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.9rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hero-label::before { content: ''; display: block; width: 1.5rem; height: 1px; background: var(--rust); }
+
+  h1 {
+    font-size: clamp(2.6rem, 11vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+  }
+  h1 em { font-style: italic; color: var(--rust); }
+
+  .hero-bio {
+    font-size: 1.05rem;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 1.8rem;
+    max-width: 40ch;
+  }
+
+
+  .hero-links { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.6rem; }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    width: fit-content;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hero-cta:hover { color: var(--rust); border-color: var(--rust); }
+
+.icon-link {
+display: inline-flex;
+align-items: center; justify-content: center;
+width: 42px; height: 42px;
+border: 1px solid var(--rust);
+color: var(--rust);
+text-decoration: none;
+transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.icon-link:hover {
+color: var(--rust);
+border-color: var(--rust);
+background: var(--white);
+}
+ 
+
+  .location-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .location-tag::before { content: '◎'; color: var(--rust); font-size: 0.55rem; }
+
+
+  /* ── SECTIONS ── */
+  section { padding: 3.5rem 1.4rem; }
+  section:nth-child(even) { background: var(--white); }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 1rem;
+    margin-bottom: 2.4rem;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--rust);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+  h2 {
+    font-size: clamp(1.7rem, 7vw, 2.6rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
+  h2 em { font-style: italic; }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* ── ABOUT ── */
+  .about-text p {
+    font-size: 1.05rem;
+    font-weight: 300;
+    margin-bottom: 1.1rem;
+  }
+  .about-text p:first-child { font-size: 1.14rem; }
+  .about-text a { color: var(--rust); text-decoration: none; border-bottom: 1px solid var(--rust); }
+
+  .skills-block { margin-top: 2.2rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .skill-group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.55rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.07em;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--border);
+    color: var(--ink);
+    transition: background 0.2s, color 0.2s;
+  }
+  .tag:hover { background: var(--ink); color: var(--sand); border-color: var(--ink); }
+
+  /* ── EXPERIENCE ── */
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item {
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap;
+  }
+  .current {
+    background: var(--rust);
+    color: white;
+    font-size: 0.55rem;
+    padding: 0.1rem 0.5rem;
+    letter-spacing: 0.12em;
+  }
+  .exp-role { font-size: 1.12rem; font-weight: 400; margin-bottom: 0.2rem; line-height: 1.3; }
+  .exp-org {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--rust);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.7rem;
+  }
+  .exp-desc { font-size: 0.93rem; color: var(--muted); font-weight: 300; }
+
+  /* ── PROJECTS ── */
+  .projects-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .project-card {
+    background: var(--sand);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .project-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--rust);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .project-card:hover { border-color: var(--rust); }
+  .project-card:hover::after { transform: scaleX(1); }
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.8rem;
+  }
+  .project-title { font-size: 1.1rem; font-weight: 400; margin-bottom: 0.7rem; line-height: 1.25; }
+  .project-desc { font-size: 0.92rem; color: var(--muted); font-weight: 300; flex: 1; }
+  .project-link {
+    margin-top: 1.2rem;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .project-link:hover { color: var(--rust); }
+ 
+  /* ── LIVE PROJECT CARDS ── */
+  .subsection-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .subsection-label::before { content: ''; display: block; width: 1.5rem; height: 1px; background: var(--muted); }
+ 
+  .live-projects { display: flex; flex-direction: column; gap: 1.5rem; }
+ 
+  .live-card {
+    border: 1px solid var(--border);
+    background: var(--white);
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .live-card:hover { border-color: var(--rust); box-shadow: 0 8px 32px rgba(0,0,0,0.07); }
+ 
+  .live-card-preview {
+    border-bottom: 1px solid var(--border);
+    background: var(--sand);
+    overflow: hidden;
+  }
+  .preview-topbar {
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 0.5rem 0.8rem;
+    background: var(--border);
+    border-bottom: 1px solid #ccc8bf;
+  }
+  .preview-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: 0.4;
+    display: inline-block;
+  }
+  .preview-url {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-left: 0.4rem;
+  }
+  .preview-body {
+    padding: 1rem 1rem 0.6rem;
+  }
+  .preview-stats-row {
+    display: flex; gap: 1rem; justify-content: center;
+    padding: 0.5rem 0 0.3rem;
+  }
+  .preview-stat { text-align: center; }
+  .ps-num { display: block; font-size: 1.1rem; font-weight: 300; line-height: 1.1; }
+  .ps-lbl { font-family: 'DM Mono', monospace; font-size: 0.52rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+ 
+  .preview-legend-row {
+    display: flex; align-items: center; gap: 0.35rem;
+    padding: 0.4rem 0 0.1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.52rem; color: var(--muted); letter-spacing: 0.06em;
+  }
+  .preview-dot-legend {
+    width: 7px; height: 7px; border-radius: 50%; display: inline-block; flex-shrink: 0;
+  }
+  .preview-legend-txt { display: inline; }
+ 
+  .live-card-info { padding: 1.6rem; display: flex; flex-direction: column; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.9rem 0 1.2rem; }
+  .chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.07em;
+    padding: 0.25rem 0.65rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .live-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 1px;
+    width: fit-content;
+    transition: color 0.2s, border-color 0.2s;
+    margin-top: auto;
+  }
+  .live-link:hover { color: var(--rust); border-color: var(--rust); }
+
+  /* ── WP ── */
+  .projects-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .project-card {
+    background: var(--sand);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .project-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--rust);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .project-card:hover { border-color: var(--rust); }
+  .project-card:hover::after { transform: scaleX(1); }
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.8rem;
+  }
+  .project-title { font-size: 1.1rem; font-weight: 400; margin-bottom: 0.7rem; line-height: 1.25; }
+  .project-desc { font-size: 0.92rem; color: var(--muted); font-weight: 300; flex: 1; }
+  .project-link {
+    margin-top: 1.2rem;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .project-link:hover { color: var(--rust); }
+
+ 
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 1.4rem;
+    border-top: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 1rem;
+    background: var(--sand);
+  }
+  .footer-name { font-size: 1rem; font-weight: 300; font-style: italic; color: var(--muted); }
+  .footer-links { display: flex; gap: 1.6rem; }
+  .footer-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--rust); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── DESKTOP OVERRIDES ── */
+  @media (min-width: 700px) {
+    nav { padding: 1.3rem 3rem; }
+    .nav-links { gap: 2.2rem; }
+    .nav-links a { font-size: 0.68rem; }
+
+    #hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 3rem 3rem;
+      gap: 3rem;
+    }
+    .hero-photo-wrap { margin-bottom: 0; aspect-ratio: 3/4; }
+    .hero-links { flex-direction: row; }
+
+    .stats-strip {
+      margin: 0 3rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    section { padding: 5rem 3rem; }
+
+    .about-skills-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+    }
+    .skills-block { margin-top: 0; }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 10rem 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .exp-date { margin-bottom: 0; }
+
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+
+    footer { flex-direction: row; justify-content: space-between; align-items: center; padding: 2.5rem 3rem; }
+  }
+
+  @media (min-width: 1100px) {
+    #hero { padding: 8rem 4rem 4rem; gap: 4rem; }
+    .stats-strip { margin: 0 4rem; }
+    section { padding: 6rem 4rem; }
+    .projects-grid { grid-template-columns: repeat(3, 1fr); }
+    footer { padding: 2.5rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Haoua Ben Ali Abbo</a>
+  <ul class="nav-links">
+    <li><a href="#about">About me</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#working-papers">Working papers</a></li>
+    <li><a href="CV_anglais.pdf" download class="nav-cv">
+      <svg width="11" height="11" viewBox="0 0 16 16" fill="none" style="margin-right:0.3rem;vertical-align:middle;"><path d="M8 2v8M8 10l-3-3M8 10l3-3M3 13h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>CV
+    </a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- Photo -->
+  <div class="hero-photo-wrap">
+    <!-- Remplace "photo.jpg" par le nom de ton fichier image -->
+    <img src="photo.jpg" alt="Haoua Ben Ali Abbo"
+      onerror="this.parentElement.innerHTML='<div class=\'hero-photo-placeholder\'><svg width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1\'><circle cx=\'12\' cy=\'8\' r=\'4\'/><path d=\'M4 20c0-4 3.6-7 8-7s8 3 8 7\'/></svg><span>Ajouter photo.jpg</span></div>'">
+  </div>
+
+  <!-- Texte -->
+  <div class="hero-text">
+    <p class="hero-label">Data Analyst · Development Economist</p>
+    <h1><em>Haoua</em><br>Ben Ali Abbo</h1>
+    <p class="hero-bio">I am a Data Analyst & (hopefully) soon-to-be PhD Candidate in Development Economics. My research focuses on measuring access to financial services and analysing patterns of financial inclusion at a global scale.</p>
+    <div class="hero-links" style="flex-direction:row; gap:1rem;">
+      <a href="https://www.linkedin.com/in/haoua-ben-ali-abbo" target="_blank" class="icon-link" title="LinkedIn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M7 10v7M7 7v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 17v-4c0-1.1.9-2 2-2s2 .9 2 2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 10v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+      <a href="https://github.com/Haoua01" target="_blank" class="icon-link" title="GitHub">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      </a>
+      <a href="/cdn-cgi/l/email-protection#3052555e515c595152525f1e58515f455170575d51595c1e535f5d" class="icon-link" title="Email">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+    <p class="location-tag">Suresnes, France · N'Djamena, Chad </p>
+    </div>
+</section>
+
+
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2><em>About me</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-skills-grid">
+    <div class="about-text reveal">
+      <p>I hold an Engineering degree from <strong>Télécom Paris</strong>, one of France's top engineering schools, specializing in stochastic modelling and data science. I completed my studies with a Master degree in economics from <strong>Paris Dauphine PSL University</strong>.</p>
+      <p>Valedictorian in my high school in N'Djamena, Chad, I was awarded the Excellence-Major fellowship by the French Ministry of Foreign Affairs in 2019, which supports high-achieving students from French high schools abroad. I am fluent in French, English, Spanish and Arabic.</p>
+      <p>My research focuses on measuring and identifying the determinants of access to financial services in sub-Saharan Africa. I adopt a geospatial and econometric approach to understand territorial and socio-economic inequalities in access.</p>
+      </div>
+  </div>
+</section>
+
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2><em>Projects</em></h2>
+    <div class="section-line"></div>
+  </div>
+   <!-- LIVE PROJECTS -->
+  <div class="subsection-label reveal">Live projects</div>
+  <div class="live-projects">
+ 
+    <!-- CARD 1 : Africa Money Map -->
+    <div class="live-card reveal">
+      <div class="live-card-preview">
+        <div class="preview-topbar">
+          <span class="preview-dot r"></span><span class="preview-dot y"></span><span class="preview-dot g"></span>
+          <span class="preview-url">africamoneymap.fr</span>
+        </div>
+        <div style="position:relative; height:100%; overflow:hidden;">
+          <img src="africamoneymap.jpg" alt="Africa Money Map screenshot"
+            style="width:100%; height:100%; object-fit:cover; object-position:top; display:block; transition:transform 0.4s ease;">
+          <div class="preview-img-overlay"></div>
+        </div>
+      </div>
+      <div class="live-card-info">
+        <span class="project-tag">2025 → Today · Digital Finance Chair - Télécom Paris</span>
+        <h3 class="project-title">Africa Money Map</h3>
+        <p class="project-desc">Interactive map representing different accessibility indicators in Sub-Saharan Africa.</p>
+        <div class="chip-row">
+          <span class="chip">Python</span><span class="chip">Web scraping</span><span class="chip">HTML/CSS/JavaScript</span><span class="chip">QGIS</span><span class="chip">Openrouteservice</span><span class="chip">Docker</span>
+        </div>
+        <a href="https://www.africamoneymap.fr" target="_blank" class="live-link">Visit website →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- WP -->
+<section id="working-papers">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2><em>Working papers</em></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <span class="project-tag">Internship report · 2025</span>
+      <h3 class="project-title">L'inclusion financière au Tchad : représentation spatiale et analyse des flux de transactions du mobile money</h3>
+      <p class="project-desc">This study presents a granular geospatial analysis of access and use of mobile money in Chad, based on geolocated transaction data.
+First, we analyze intra-provincial and inter-provincial transaction flows, highlighting a strong concentration of transactions in a limited number of major economic hubs across the country (Center-West, South, and East). We then develop an activity indicator measuring the intensity of mobile money usage across territories using a convolution-based approach. This indicator is subsequently employed in a regression analysis to identify the determinants of the intensity of mobile money activity within densely populated areas. The results confirm a positive effect of population density and road infrastructure on the activity, while distance to banking infrastructure exerts a significant negative impact. To the best of our knowledge, these findings constitute the first granular geospatial analysis of mobile money usage in the CEMAC region, representing an important step towards understanding financial inclusion.</p>
+    </div>
+    <div class="project-card reveal">
+      <span class="project-tag">Master thesis · 2025</span>
+      <h3 class="project-title">Access to bank branches in West Africa: measurement and determinants</h3>
+      <p class="project-desc">This paper presents a granular geospatial analysis of access to bank branches in the eight countries of the West African Monetary Union (WAMU), using a self-constructed dataset on geolocated bank branches. 
+We elaborate and compare three spatial indicators of access at the smallest administrative unit, refered to as “municipality” for consistency. The first is based on a Floating Catchment Area (FCA) methodology, the second adopts a fully isochronous approach, measuring the proportion of municipal area covered by at least one bank branch within specific travel times and the third, a hybrid index, integrates isochrone-based coverage into an FCA framework. Our results show that the hybrid methodology outperforms the FCA in capturing disparities, and is more straightforward than the fully isochronous approach. Furthermore, we investigate the correlation between the presence of bank branches in a municipality and socio-economic characteristics. We find that municipalities with a greater share of population in trade and a higher population density are positively correlated with branch presence, while lower education levels and higher shares of agricultural or self-employed workers are associated with poorer access. To the best of our knowledge, these findings provide the first granular, region-wide assessment of bank branch accessibility, an important step towards achieving financial inclusion in the sub-region.</p>
+    </div>
+    <div class="project-card reveal">
+      <span class="project-tag">Working paper · 2025</span>
+      <h3 class="project-title">Exploring Machine Obedience: Multi-Agent Frameworks Around the Milgram Experiment - With Laura Landrein</h3>
+      <p class="project-desc">By implementing Milgram's framework in a multi-agent system, this paper examines the extent to which AI agents influence each other and the conditions under which they comply with authoritative instructions. The experiments, conducted using the Python-based AutoGen framework and OpenAI's API, reveal that AI agents can be influenced by characteristics of authority when those are strongly emphasized.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Website Powered by Haoua Ben Ali Abbo (with the help of Claude!)</span>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
